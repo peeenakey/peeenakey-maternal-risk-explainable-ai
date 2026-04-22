@@ -1,29 +1,161 @@
-# 🩺 Maternal Health Risk Predictor & Explainable AI (XAI)
+# Maternal Risk Prediction using Explainable AI
 
-## 📌 Overview
-An end-to-end machine learning pipeline that predicts maternal health risks based on patient vitals. Instead of acting as a "black box," this project uses Explainable AI (SHAP) to show exactly which medical factors (like blood sugar or blood pressure) drive each risk prediction.
+## Overview
 
-## 🎯 Real-World Impact
-In healthcare, doctors cannot blindly trust an AI's diagnosis. This project bridges the gap between high accuracy and human trust by providing interpretable, patient-level explanations for clinical predictions.
+This project focuses on predicting maternal health risk levels using clinical parameters and machine learning, with an emphasis on interpretability through Explainable AI (XAI). The system classifies patients into Low Risk, Mid Risk, and High Risk categories. A Random Forest model is used for prediction, and SHAP (SHapley Additive exPlanations) is applied to explain feature contributions, making the model suitable for healthcare applications where transparency is critical.
 
-## 🛠️ Tech Stack & Tools
-* **Language:** Python
-* **Machine Learning:** Scikit-Learn (Random Forest Classifier)
-* **Explainable AI (XAI):** SHAP (SHapley Additive exPlanations)
-* **Data Processing:** Pandas, NumPy
-* **Visualization:** Seaborn, Matplotlib
+## Problem Statement
 
-## 📊 Key Results
-* **Predictive Accuracy:** Achieved ~80% accuracy in classifying patients into Low, Mid, and High-risk categories.
-* **Feature Importance:** Identified Blood Sugar as the leading indicator of elevated maternal risk.
-* **Model Transparency:** Generated SHAP summary plots to decode the model's decision-making process for individual patient profiles.
+Maternal health complications remain a significant challenge, especially in resource-constrained environments. Early detection of high-risk pregnancies can reduce maternal mortality, enable timely intervention, and assist clinicians in decision-making. This project builds a data-driven pipeline to analyze maternal health indicators, predict risk level, and explain model decisions.
 
-## 📸 Visual Insights
-*(Note: Upload your images to your repo and add the links here!)*
-* `![Confusion Matrix](link_to_confusion_matrix.png)` - *Shows model accuracy across risk levels.*
-* `![SHAP Analysis](link_to_shap_summary_bar.png)` - *Illustrates how each feature impacts the final risk score.*
+## Dataset
 
-## 🚀 How to Run This Project
-1. Clone the repository.
-2. Ensure you have the required libraries installed: `pip install pandas numpy scikit-learn shap matplotlib seaborn`
-3. Run the Jupyter Notebook or Python script to view the data pipeline, train the model, and generate the XAI visualizations.
+The dataset includes the following clinical features:
+
+* Age
+* Systolic Blood Pressure
+* Diastolic Blood Pressure
+* Blood Sugar (BS)
+* Body Temperature
+* Heart Rate
+* Risk Level (Target Variable)
+
+### Target Encoding
+
+* Low Risk → 0
+* Mid Risk → 1
+* High Risk → 2
+
+## Project Pipeline
+
+### 1. Data Preprocessing
+
+* Removed duplicate entries
+* Handled anomalies (e.g., invalid heart rate values)
+* Missing values imputed using median
+* Data validation and consistency checks
+
+### 2. Exploratory Data Analysis (EDA)
+
+* Feature distributions using histograms
+* Risk-level comparison using boxplots
+* Correlation heatmap to identify relationships
+
+Generated visualizations:
+
+* feature_distribution.png
+* features_vs_risk.png
+* correlation_heatmap.png
+
+### 3. Model Training
+
+* Model: Random Forest Classifier
+* Train-test split: 80-20
+* Random state: 42
+
+### 4. Model Evaluation
+
+* Accuracy Score
+* Confusion Matrix
+
+Output:
+
+* confusion_matrix.png
+
+### 5. Explainable AI (XAI)
+
+* Feature importance using Random Forest
+* SHAP for global interpretability
+
+Outputs:
+
+* feature_importances.png
+* shap_summary_bar.png
+
+## Results
+
+The model successfully classifies maternal risk levels with strong accuracy. Key influencing features include blood pressure (systolic and diastolic), blood sugar, and heart rate. SHAP analysis confirms how each feature contributes to predictions, improving interpretability and trust.
+
+## Tech Stack
+
+Programming Language:
+
+* Python
+
+Libraries Used:
+
+* pandas
+* numpy
+* matplotlib
+* seaborn
+* scikit-learn
+* shap
+
+## Installation
+
+git clone https://github.com/your-username/maternal-risk-explainable-ai.git
+cd maternal-risk-explainable-ai
+pip install -r requirements.txt
+
+Additional dependency:
+pip install shap
+
+## Usage
+
+python maternal-risk-explainable-ai.py
+
+Or run in Google Colab for interactive execution.
+
+## Project Structure
+
+maternal-risk-explainable-ai/
+│
+├── data/
+│   └── archive.zip
+│
+├── outputs/
+│   ├── feature_distribution.png
+│   ├── features_vs_risk.png
+│   ├── correlation_heatmap.png
+│   ├── confusion_matrix.png
+│   ├── feature_importances.png
+│   └── shap_summary_bar.png
+│
+├── maternal-risk-explainable-ai.py
+├── README.md
+└── requirements.txt
+
+## Key Insights
+
+* Blood pressure and blood sugar are strong indicators of maternal risk
+* Data preprocessing significantly improves model performance
+* Explainability is essential for healthcare AI adoption
+
+## Limitations
+
+* Dataset size and diversity may limit generalization
+* No real-time deployment
+* Requires clinical validation
+
+## Future Work
+
+* Deploy as a web or mobile application
+* Integrate wearable sensor data
+* Use advanced models (XGBoost, deep learning)
+* Add personalized patient-level explanations
+* Validate with real-world clinical datasets
+
+## Applications
+
+* Clinical decision support systems
+* Rural healthcare monitoring
+* Telemedicine platforms
+* Maternal health tracking applications
+
+## License
+
+This project is intended for academic and research purposes.
+
+## Author
+
+Developed as part of a healthcare AI project focusing on interpretable machine learning for maternal risk assessment.
